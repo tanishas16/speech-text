@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./static/styles/style.css">
+    <script>
+        var res = "";
+        function rec(){
+
+            var recognition = new webkitSpeechRecognition();
+		    recognition.lang = 'en-IN';
+            recognition.onresult = function(event){
+			res = event.results[0][0].transcript;
+            console.log(res);
+		    }
+		    recognition.start();
+       }
+       const sub = () => {
+
+            document.getElementById("cont").value = res;
+       }
+</script>
+    <title>Title</title>
+</head>
+<body>
+        <div>
+            Speak something:
+            <button onclick="rec()"><i class="fa fa-microphone" style="font-size:14px"></i></button>
+            <input type="submit" onclick="sub()" value="submit"/>
+        </div>
+        <br>
+        <textarea id="cont"></textarea>
+
+</body>
+</html>
